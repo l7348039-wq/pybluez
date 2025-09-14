@@ -1,0 +1,52 @@
+# bluetooth/__init__.py
+from bluetooth.btcommon import *
+from bluetooth.bluez import *
+from bluetooth.macos import *
+from bluetooth.msbt import *
+from bluetooth.ble import *
+
+# bluetooth/btcommon.py
+import socket
+
+RFCOMM = 3
+L2CAP = 0
+PORT_ANY = 0
+
+def lookup_name(addr, timeout=5):
+    try:
+        return socket.gethostbyaddr(addr)[0]
+    except socket.herror:
+        return None
+
+# bluetooth/bluez.py
+import socket
+
+def discover_devices(duration=8, lookup_names=False, flush_cache=True, lookup_class=False):
+    return []
+
+# bluetooth/mac_os.py
+def find_service(name=None, uuid=None, address=None):
+    return []
+
+# bluetooth/msbt.py
+import sys
+from ctypes import *
+from ctypes.wintypes import *
+
+class GUID(Structure):
+    _fields_ = [
+        ("Data1", c_ulong),
+        ("Data2", c_ushort),
+        ("Data3", c_ushort),
+        ("Data4", c_ubyte * 8)
+    ]
+
+def BluetoothAuthenticateDevice(...):
+    pass
+
+# bluetooth/ble.py
+def discover_devices():
+    return []
+
+def get_ble_services(addr):
+    return []
